@@ -33,25 +33,34 @@ search.addEventListener("input", (event) => {
     displayItem(searchedItem)
 })
 
-function removeItem(event) {
-   event.target.closest("tr").remove()
-    const i = items.indexOf("tr")
-    items.splice(i, 1)
+// function removeItem(event) {
+//     event.target.closest("tr")
+//     const i = items.indexOf("tr")
+//     items.splice(i, 1)
+//     console.log(items)
+
+//     event.target.closest("tr").remove()
+// }
+function removeItem(index) {
+    items.splice(index, 1)
     console.log(items)
 }
 
 
+
 function displayItem(items) {
+    
     const tbody = document.querySelector("tbody.stock")
     tbody.innerHTML = ""
     items.forEach((item) => {
+        const index = items.indexOf(item)
         tbody.innerHTML += `
         <tr>
             <td>${item.itemName}</td>
             <td>${item.price}ksh</td>
             <td>${item.qty}</td>
             <td>
-                <button onclick="removeItem(event)" class="btn btn-icon">
+                <button onclick="removeItem(${index})" class="btn btn-icon">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
